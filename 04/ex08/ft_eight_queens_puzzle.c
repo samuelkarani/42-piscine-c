@@ -6,14 +6,14 @@
 /*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 20:03:05 by smbaabu           #+#    #+#             */
-/*   Updated: 2019/07/24 20:36:56 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/07/24 22:06:33 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
 
-static int N = 8;
+static int N;
 
 int check_diagonal(int board[N][N], int i, int j)
 {
@@ -81,5 +81,6 @@ int	ft_eight_queens_puzzle(void)
 
 int main()
 {
+	N = 8;
 	printf("%d\n", ft_eight_queens_puzzle());
 }
