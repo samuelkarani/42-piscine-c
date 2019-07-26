@@ -6,7 +6,7 @@
 /*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 21:45:30 by smbaabu           #+#    #+#             */
-/*   Updated: 2019/07/25 14:10:00 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/07/25 16:53:32 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct  s_node
     int j;
 }               t_node;
 
-t_node  getNext(int board[N][N], int i, int j)
+t_node  get_next(int board[N][N], int i, int j)
 {
     for (; i < N; i++)
     {
@@ -99,7 +99,7 @@ t_node  getNext(int board[N][N], int i, int j)
 int sudoku(int board[N][N], int i, int j)
 {
     int nums[N], m, n;
-    t_node res = getNext(board, i, j);
+    t_node res = get_next(board, i, j);
     if (res.i == -1)
     {
         print_board(board, -1, -1);
@@ -107,8 +107,6 @@ int sudoku(int board[N][N], int i, int j)
     }
     i = res.i, j = res.j;
     m = check(board, nums, i, j);
-    if (!m)
-        return 0;
     for (int k = 0; k < m; k++)
     {
         board[i][j] = nums[k];
