@@ -6,7 +6,7 @@
 /*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 21:45:30 by smbaabu           #+#    #+#             */
-/*   Updated: 2019/08/10 00:58:22 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/10 11:43:31 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_node  get_next(int board[N][N], int i, int j)
 
 int sudoku(int board[N][N], int i, int j)
 {
-    int nums[N], m, n;
+    int nums[N], m;
     t_node res = get_next(board, i, j);
     if (res.i == -1)
     {
@@ -102,8 +102,7 @@ int sudoku(int board[N][N], int i, int j)
     for (int k = 0; k < m; k++)
     {
         board[i][j] = nums[k];
-        n = sudoku(board, i, j);
-        if (n)
+        if (sudoku(board, i, j))
             return 1;
         else
             board[i][j] = 0;
