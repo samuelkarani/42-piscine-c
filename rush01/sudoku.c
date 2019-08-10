@@ -6,7 +6,7 @@
 /*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 21:45:30 by smbaabu           #+#    #+#             */
-/*   Updated: 2019/07/25 16:53:32 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/10 00:58:22 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@
 # define YEL  "\x1B[33m"
 # define RST  "\x1B[0m"
 
-static int N;
-
-void print_nums(int nums[N], int n, int i, int j, int k)
-{
-    printf("i = %d j = %d k = %d | ", i, j, k);
-    for (int i = 0; i < n; i++)
-        printf("%d ", nums[i]);
-    printf("\n");
-}
+# define N 9
 
 void print_board(int board[N][N], int ii, int jj)
 {
@@ -110,7 +102,6 @@ int sudoku(int board[N][N], int i, int j)
     for (int k = 0; k < m; k++)
     {
         board[i][j] = nums[k];
-        // print_nums(nums, m, i, j, k); print_board(board, i, j); printf("\n");
         n = sudoku(board, i, j);
         if (n)
             return 1;
@@ -133,6 +124,18 @@ int main()
         {0,9,0,0,5,0,7,4,1},
         {4,7,0,0,0,0,0,0,0}
     };
-    N = 9;
+	 int board2[9][9] ={{ 0, 0, 4,   0, 0, 0,   0, 6, 7 },
+                        { 3, 0, 0,   4, 7, 0,   0, 0, 5 },
+                        { 1, 5, 0,   8, 2, 0,   0, 0, 3 },
+
+                        { 0, 0, 6,   0, 0, 0,   0, 3, 1 },
+                        { 8, 0, 2,   1, 0, 5,   6, 0, 4 },
+                        { 4, 1, 0,   0, 0, 0,   9, 0, 0 },
+
+                        { 7, 0, 0,   0, 8, 0,   0, 4, 6 },
+                        { 6, 0, 0,   0, 1, 2,   0, 0, 0 },
+                        { 9, 3, 0,   0, 0, 0,   7, 1, 0 } };
     sudoku(board, 0, 0);
+	printf("\n");
+    sudoku(board2, 0, 0);
 }
