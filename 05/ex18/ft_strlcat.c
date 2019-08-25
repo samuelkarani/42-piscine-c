@@ -3,48 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 12:58:35 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/28 20:37:56 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/22 19:58:06 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	h_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
-
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	char	*s;
-	char	*d;
-	int		n;
-	int		dlen;
+	unsigned int dstsize, srcsize, left;
 
-	d = dest;
-	s = src;
-	n = size;
-	while (*d != '\0' && n-- != 0)
-		d++;
-	dlen = d - dest;
-	n = size - dlen;
-	if (n == 0)
-		return (dlen + h_strlen(s));
-	while (*s != '\0')
+	dstsize = 0;
+	while (*dest)
 	{
-		if (n != 1)
-		{
-			*d++ = *s;
-			n--;
-		}
-		s++;
+		dest++;
+		dstsize++;
 	}
-	*d = '\0';
-	return (dlen + (s - src));
+	for (srcsize = 0; src[srcsize]; srcsize++)
+		;
+	if (size <= dstsize)
+		return srcsize + size;
+	left = size - dstsize - 1;
+	while (left-- > 0)
+		*dest++ = *src++;
+	*dest = 0;
+	return srcsize + dstsize;
+}
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char buf1[20] = "abc";
+	char buf2[20] = "abc";
+	int d;
+	d = ft_strlcat(buf1, "def", 7);
+	printf("%d %s\n", d, buf1);
+	d = strlcat(buf2, "def", 7);
+	printf("%d %s\n", d, buf2);
+
+	strcpy(buf1, "abc");
+	strcpy(buf2, "abc");
+	d = ft_strlcat(buf1, "def", 6);
+	printf("%d %s\n", d, buf1);
+	d = strlcat(buf2, "def", 6);
+	printf("%d %s\n", d, buf2);
+
+	strcpy(buf1, "abc");
+	strcpy(buf2, "abc");
+	d = ft_strlcat(buf1, "def", 2);
+	printf("%d %s\n", d, buf1);
+	d = strlcat(buf2, "def", 2);
+	printf("%d %s\n", d, buf2);
 }

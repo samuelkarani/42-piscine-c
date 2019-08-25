@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 15:53:21 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/03 21:48:00 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/25 23:32:54 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_count_if(char **tab, int (*f) (char*))
 {
 	int i;
-	int res;
+	int n;
 
 	i = 0;
-	res = 0;
+	n = 0;
 	while (tab[i])
 	{
 		if ((*f)(tab[i]) == 1)
-			res += 1;
+			n += 1;
 		i++;
 	}
-	return (res);
+	return (n);
 }

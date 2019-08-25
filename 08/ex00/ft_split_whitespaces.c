@@ -3,83 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 22:15:26 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/02 23:35:15 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/25 19:23:31 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int		ft_strlen(char *str)
 {
-	char *p;
-
-	p = dest;
-	while (n)
-	{
-		if (*src != '\0')
-			*dest++ = *src++;
-		else
-			*dest++ = '\0';
-		n--;
-	}
-	return (p);
-}
-
-int		is_space(char c)
-{
-	return (c == '\n' || c == '\t' || c == ' ');
-}
-
-int		get_len_spaces(char *str)
-{
-	int i;
-	int j;
-	int k;
-
-	i = 0;
-	k = 0;
+	int i = 0;
 	while (str[i])
-	{
-		j = i;
-		while (str[j] && !is_space(str[j]))
-			j++;
-		if (j > i)
-		{
-			i = j;
-			k++;
-		}
 		i++;
-	}
-	return (k);
+	return (i);
+}
+
+int isSep(char c)
+{
+	return c == '\t' || c == ' ' || c == '\n';
+}
+
+int size(char *s)
+{
+	int n = 1;
+	for (int i = 0; s[i]; i++)
+		if (isSep(s[i]))
+			n++;
+	return n;
+}
+
+char *strsub(char *s, int len)
+{
+	char *res = malloc((len + 1) * sizeof(char));
+	int i = 0;
+	for (; i < len; i++)
+		res[i] = s[i];
+	res[i] = 0;
+	return res;
 }
 
 char	**ft_split_whitespaces(char *str)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*s;
+	int		idx, start;
 	char	**res;
 
-	i = 0;
-	k = 0;
-	res = (char **)malloc(sizeof(char *) * (get_len_spaces(str) + 1));
-	while (str[i])
+	res = malloc((size(str) + 1) * sizeof(char *));
+	start = 0, idx = 0;
+	for (int i = 0; str[i]; i++)
 	{
-		j = i;
-		while (str[j] && !is_space(str[j]))
-			j++;
-		if (j > i)
-		{
-			s = ft_strncpy(malloc(sizeof(char) * j - i + 1), &str[i], j - i);
-			res[k++] = s;
-			i = j;
-		}
-		i++;
+		if (!isSep(str[i]) && i > 0 && isSep(str[i - 1]))
+			start = i;
+		if (isSep(str[i]) && i > 0 && !isSep(str[i - 1]))
+			res[idx++] = strsub(str + start, i - start);
+		else if (!str[i + 1] && !isSep(str[i]))
+			res[idx++] = strsub(str + start, i - start + 1);
 	}
-	res[i] = NULL;
+	res[idx] = 0;
 	return (res);
+}
+
+int main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		char **sarr = ft_split_whitespaces(av[1]);
+		for (int i = 0; sarr[i]; i++)
+			printf("%s\n", sarr[i]);
+	}
 }

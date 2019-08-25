@@ -3,59 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 23:20:24 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/24 23:33:44 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/25 17:44:28 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		h_strlen(char *str)
+int		is_space(char c)
+{
+	return c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r';
+}
+
+int		ft_atoi(char *str)
 {
 	int i;
+	int neg;
+	int sum;
 
+	sum = 0;
+	neg = 1;
 	i = 0;
-	while (str[i] != '\0')
+	while (is_space(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			neg = -1;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
+		sum *= 10;
+		sum += str[i] - '0';
 		i++;
 	}
-	return (i);
+	return sum * neg;
 }
 
-int		h_power(int x, int n)
-{
-	if (n < 0)
-		return (1);
-	if (n == 1)
-		return (x);
-	return (x * h_power(x, n - 1));
-}
-
-int ft_atoi(char *str)
-{
-	char 	*p;
-	int 	i;
-	char 	c;
-	int 	l;
-	int 	neg;
-	int 	sum;
-	
-	p = str;
-	l = h_strlen(p);
-	neg = 0;
-	c = *str;
-	if (c == '-')
-	{
-		p++;
-		l--;
-		neg = 1;
-	}
-	while (i < l)
-	{
-		c = str[i];
-		int pr = (c - 48) * h_power(10, l - i - 1);
-		sum += pr;
-		i++;
-	}
-	return neg ? sum * -1 : sum;
+#include <stdio.h>
+int main(int ac, char **av) {
+	for (int i = 1; av[i]; i++)
+		printf("%d\n", ft_atoi(av[i]));
 }

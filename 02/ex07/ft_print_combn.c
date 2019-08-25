@@ -3,77 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_combn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 00:51:28 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/24 00:57:07 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/21 20:40:08 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char* ft_itoa(int val, int base){
-	
-	static char buf[32] = {0};
-	
-	int i = 30;
-	
-	for(; val && i ; --i, val /= base)
-	
-		buf[i] = "0123456789abcdef"[val % base];
-	
-	return &buf[i+1];
-	
-}
+#include <unistd.h>
 
-int		power(int x, int y)
+void inc(char *buf, int i, int n)
 {
-    if (y == 0)
-        return 1;
-    return (x * power(x, y - 1));
-}
-
-int		all_increasing(int n, int max_size)
-{
-	int i;
-	char snum[max_size];
-
-	snum = ft_itoa(n, snum);
-	i = max_size - 1;
-	while (i >= 0 && max_size > 1)
+	if (n < 0)
+		return;
+	if (buf[i] + 1 > '9')
+		return inc(buf, i - 1, n);
+	buf[i++]++;
+	for (; i < n; i++)
 	{
-		if (snum[i-1] > snum[i])
-		{
-			return 0;
-		}
-		i--;
+		if (buf[i - 1] + 1 > '9')
+			inc(buf, i - 1, n);
+		else
+			buf[i] = buf[i - 1] + 1;
 	}
+	return ;
+}
+
+int mx(char *buf, int n)
+{
+	int mx = 0;
+	for (int i = 0; i < n - 1; i++)
+		if (buf[i] + 1 == buf[i + 1])
+			mx++;
+	return buf[n - 1] == '9' && mx == n - 1;
+}
+
+int check(char *buf, int n)
+{
+	int i, mx;
+	for (i = 0; i < n - 1; i++)
+		if (buf[i] >= buf[i + 1])
+			return 0;
 	return 1;
 }
 
 void	ft_print_combn(int n)
 {
-	int i;
-	int max;
+	char buf[n];
 
-	i = 0;
-	max = power(10, n);
-	while (i < max)
+	for (int i = 0; i < n; i++)
+		buf[i] = '0' + i;
+	while (1)
 	{
-		if (all_increasing(i, n))
+		if (check(buf, n))
 		{
-			printf('%c, ', i + 48);
+			write(1, buf, n);
+			if (!mx(buf, n))
+				write(1, ", ", 2);
+			else
+				break ;
 		}
-		i++;
+		inc(buf, n - 1, n);
 	}
 }
 
 int		main(void)
 {
-	int i;
-
-	i = 1;
-	while (i < 10)
-	{
-		ft_print_combn(i);
-		i++;
-	}
+	// ft_print_combn(2);
+	ft_print_combn(3);
+	// ft_print_combn(4);
 }

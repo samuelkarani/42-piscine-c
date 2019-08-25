@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stock_par.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/25 19:25:51 by smbaabu           #+#    #+#             */
+/*   Updated: 2019/08/25 20:28:27 by smbaabu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+
 typedef struct s_stock_par
 {
 	int size_param;
@@ -5,3 +19,6 @@ typedef struct s_stock_par
 	char *copy;
 	char **tab;
 } t_stock_par;
+
+char	**ft_split_whitespaces(char *str);
+t_stock_par	*ft_param_to_tab(int ac, char **av);

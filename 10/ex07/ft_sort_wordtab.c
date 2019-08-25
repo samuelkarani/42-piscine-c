@@ -3,12 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 13:40:12 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/03 21:49:31 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 00:03:19 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int		ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return *s1 - *s2;
+}
 
 void	ft_swap(char **a, char **b)
 {
@@ -19,18 +29,9 @@ void	ft_swap(char **a, char **b)
 	*b = temp;
 }
 
-int		ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
 void	ft_sort_wordtab(char **tab)
 {
+	char *tmp;
 	int i;
 
 	i = 0;
@@ -42,8 +43,15 @@ void	ft_sort_wordtab(char **tab)
 			i = 0;
 		}
 		else
-		{
 			i++;
-		}
 	}
+}
+
+#include <stdio.h>
+int main(int argc, char *argv[])
+{
+	ft_sort_wordtab(argv);
+	for (int i = 0; argv[i]; i++)
+		printf("%s\n", argv[i]);
+	return 0;
 }

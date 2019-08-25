@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 01:48:54 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/28 12:57:19 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/25 17:46:39 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ char	*ft_strcat(char *dest, char *src)
 	while (*dest)
 		dest++;
 	while (*src)
-	{
 		*dest++ = *src++;
-	}
 	*dest = '\0';
 	return (p);
 }

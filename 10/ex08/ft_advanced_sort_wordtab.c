@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_advanced_sort_wordtab.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 13:57:56 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/03 14:07:08 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 00:03:28 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_advanced_sort_wordtab(char **tab, int (*cmp) (char *, char *))
 			i = 0;
 		}
 		else
-		{
 			i++;
-		}
 	}
 }

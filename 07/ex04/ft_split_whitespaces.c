@@ -3,67 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 11:15:08 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/30 21:46:03 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/25 16:33:12 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int		ft_strlen(char *str)
 {
-	int i;
-
-	i = 0;
+	int i = 0;
 	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int isSep(char c)
 {
-	char *p;
+	return c == '\t' || c == ' ' || c == '\n';
+}
 
-	p = dest;
-	while (n)
-	{
-		if (*src != '\0')
-			*dest++ = *src++;
-		else
-			*dest++ = '\0';
-		n--;
-	}
-	return (p);
+int size(char *s)
+{
+	int n = 1;
+	for (int i = 0; s[i]; i++)
+		if (isSep(s[i]))
+			n++;
+	return n;
+}
+
+char *strsub(char *s, int len)
+{
+	char *res = malloc((len + 1) * sizeof(char));
+	int i = 0;
+	for (; i < len; i++)
+		res[i] = s[i];
+	res[i] = 0;
+	return res;
 }
 
 char	**ft_split_whitespaces(char *str)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*s;
+	int		idx, start;
 	char	**res;
 
-	i = 0;
-	k = 0;
-	res = (char **)malloc(sizeof(char *));
-	while (str[i])
+	res = malloc((size(str) + 1) * sizeof(char *));
+	start = 0, idx = 0;
+	for (int i = 0; str[i]; i++)
 	{
-		j = i;
-		while (str[j] && (str[j] == '\n' || str[j] == '\t' || str[j] == ' '))
-			j++;
-		if (j > i)
-		{
-			s = malloc(sizeof(char) * j - i + 1);
-			s = ft_strncpy(s, &str[i], j - i);
-			i = j + 1;
-			res[k++] = s;
-			res = (char **)realloc(res, sizeof(char *) * k + 1);
-		}
-		else
-			i++;
+		if (!isSep(str[i]) && i > 0 && isSep(str[i - 1]))
+			start = i;
+		if (isSep(str[i]) && i > 0 && !isSep(str[i - 1]))
+			res[idx++] = strsub(str + start, i - start);
+		else if (!str[i + 1] && !isSep(str[i]))
+			res[idx++] = strsub(str + start, i - start + 1);
 	}
+	res[idx] = 0;
 	return (res);
+}
+
+
+int main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		char **sarr = ft_split_whitespaces(av[1]);
+		for (int i = 0; sarr[i]; i++)
+			printf("%s\n", sarr[i]);
+	}
 }
