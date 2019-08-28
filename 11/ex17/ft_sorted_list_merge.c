@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sorted_list_merge.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 23:54:58 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/05 00:00:08 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 13:49:59 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	if (list)
 		while (list)
 		{
-			if ((*cmp)(list->data, elem->data) >= 0)
+			if ((*cmp)(list->data, elem->data) > 0)
 			{
 				insert(begin_list, elem, prev, list);
 				break ;
@@ -54,15 +54,12 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,
 	int (*cmp)())
 {
-	t_list *list;
-
 	if (*begin_list1)
 	{
-		list = begin_list2;
-		while (list)
+		while (begin_list2)
 		{
-			ft_sorted_list_insert(begin_list1, list->data, cmp);
-			list = list->next;
+			ft_sorted_list_insert(begin_list1, begin_list2->data, cmp);
+			begin_list2 = begin_list2->next;
 		}
 	}
 	else

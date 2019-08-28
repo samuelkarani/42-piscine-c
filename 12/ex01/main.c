@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:57:09 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/06 15:37:25 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 16:41:26 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 #define STDIN 0
 #define STDOUT 1
 #define STDERR 2
+
+int fstrcmp(char *a, char *b)
+{
+	while (*a && *b && *a == *b)
+	{
+		a++;
+		b++;
+	}
+	return *a - *b;
+}
 
 void	ft_putstr(int fd, char *str)
 {
@@ -60,7 +70,7 @@ int		main(int argc, char **argv)
 		i = 1;
 		while (i < argc)
 		{
-			if (argv[i][0] == '-')
+			if (!fstrcmp(argv[i], "-"))
 				fd = STDIN;
 			else
 				fd = open(argv[i], O_RDONLY | S_IRUSR);

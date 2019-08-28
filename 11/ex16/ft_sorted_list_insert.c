@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sorted_list_insert.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 23:50:24 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/04 23:51:16 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 13:50:07 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	if (list)
 		while (list)
 		{
-			if ((*cmp)(list->data, elem->data) >= 0)
+			if ((*cmp)(list->data, elem->data) > 0)
 			{
 				insert(begin_list, elem, prev, list);
 				break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_reverse_fun.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 23:54:04 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/04 23:57:07 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 13:40:28 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,14 @@ void	ft_swap(void **a, void **b)
 t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	t_list			*list;
-	unsigned int	i;
 
-	i = 0;
 	list = begin_list;
-	while (list && i < nbr)
+	while (list && nbr > 0)
 	{
 		list = list->next;
-		i++;
+		nbr--;
 	}
-	return (i < nbr ? NULL : list);
+	return (nbr == 0 ? list : NULL);
 }
 
 void	ft_list_reverse_fun(t_list *begin_list)

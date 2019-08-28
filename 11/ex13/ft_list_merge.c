@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_merge.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 23:28:56 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/05 18:02:57 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 11:35:50 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,5 @@ void	ft_list_merge(t_list **begin_list1, t_list *begin_list2)
 		list->next = begin_list2;
 	}
 	else
-	{
 		*begin_list1 = begin_list2;
-	}
 }

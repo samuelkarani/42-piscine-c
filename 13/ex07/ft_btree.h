@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/03 15:18:17 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/03 17:17:31 by smbaabu          ###   ########.fr       */
+/*   Created: 2018/09/07 01:21:09 by smbaabu           #+#    #+#             */
+/*   Updated: 2018/09/07 02:05:54 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
-int		ft_putstr(char *str)
+typedef struct		s_btree
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		ft_putchar(str[i++]);
-	return (0);
-}
+	struct s_btree	*left;
+	struct s_btree	*right;
+	void			*item;
+}					t_btree;
+#endif

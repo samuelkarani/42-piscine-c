@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sastantua.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 11:41:46 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/08/28 16:02:20 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/27 22:14:12 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,9 @@ void	sastantua(int size)
 
 int		main(void)
 {
-	sastantua(7);
+	for (int i = 0; i < 10; i++)
+	{
+		sastantua(i);
+		ft_putchar('\n');
+	}
 }

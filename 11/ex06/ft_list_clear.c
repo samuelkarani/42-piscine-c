@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 18:15:27 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/05 02:04:07 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 00:32:27 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 void	ft_list_clear(t_list **begin_list)
 {
 	t_list	*list;
-	t_list	*temp;
+	t_list	*next;
 
 	list = *begin_list;
 	while (list)
 	{
-		temp = list->next;
+		next = list->next;
 		free(list);
-		list = temp;
+		list = next;
 	}
 	*begin_list = NULL;
 }

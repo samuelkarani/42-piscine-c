@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smbaabu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: smbaabu <smbaabu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 00:07:40 by smbaabu           #+#    #+#             */
-/*   Updated: 2018/09/06 12:54:18 by smbaabu          ###   ########.fr       */
+/*   Updated: 2019/08/26 15:59:34 by smbaabu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <unistd.h>
 
 #define BUFF_SIZE 4096
-#define STDOUT 1
-#define STDERR 2
 
 void	ft_putstr(int fd, char *str)
 {
@@ -35,22 +33,20 @@ int		main(int argc, char **argv)
 	int		ret;
 
 	if (argc == 1)
-		ft_putstr(STDERR, "File name missing.");
+		ft_putstr(2, "File name missing.");
 	else if (argc > 2)
-		ft_putstr(STDERR, "Too many arguments.");
+		ft_putstr(2, "Too many arguments.");
 	else
 	{
-		fd = open(argv[1], O_RDONLY | S_IRUSR);
-		if (fd == -1)
+		if ((fd = open(argv[1], O_RDONLY | S_IRUSR)) == -1)
 			return (1);
 		while ((ret = read(fd, buf, BUFF_SIZE)))
 		{
-			buf[ret] = '\0';
-			ft_putstr(STDOUT, buf);
+			buf[ret] = 0;
+			ft_putstr(1, buf);
 		}
-		ft_putstr(STDOUT, "\n");
-		if (close(fd) == -1)
-			return (1);
+		ft_putstr(1, "\n");
+		close(fd);
 	}
 	return (0);
 }
