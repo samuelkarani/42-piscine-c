@@ -15,9 +15,9 @@
 - [x] **Day 13**: Binary Search Trees & Red-Black Trees
 
 #### Rushes
-- [x] **Rush 0**: Pattern Printing
+- [ ] **Rush 0**: Pattern Printing
 - [x] **Rush 1**: Sudoku Solver i.e. Recursive Backtracking
-- [x] **Rush 2**: Shape Detection
+- [ ] **Rush 2**: Shape Detection
 
 #### Projects
 - [x] **Sastantua**: Pattern Printing
